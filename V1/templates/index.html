@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CIUX Birthday Assistant — V1</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main class="page">
+    <header class="academic-header">
+      <div>
+        <div class="eyebrow">GM University · School of Computer Science and Technology</div>
+        <h1>Birthday Assistant <span>V1</span></h1>
+        <p class="subtitle">UE24CS3540 — Conversational Interfaces and UX · Deterministic Rule-Based Interface</p>
+      </div>
+      <div class="badge">{{ record_count }} synthetic people</div>
+    </header>
+
+    <section class="learning-strip">
+      <strong>Learning focus:</strong> user utterance → explicit rule → data filter → response template.
+      <span>No LLM. No machine learning.</span>
+    </section>
+
+    <div class="layout">
+      <section class="chat-card">
+        <div id="chat" class="chat" aria-live="polite"></div>
+
+        <div class="chips" aria-label="Example questions">
+          <button class="chip" data-q="What are the upcoming birthdays?">Upcoming birthdays</button>
+          <button class="chip" data-q="How many birthdays are there next month?">Count next month</button>
+          <button class="chip" data-q="Is there any birthday tomorrow?">Tomorrow</button>
+          <button class="chip" data-q="When is my wife's birthday?">Wife's birthday</button>
+          <button class="chip" data-q="Any nephew birthdays in September?">Nephews in September</button>
+        </div>
+
+        <form id="chat-form" class="composer">
+          <input id="question" autocomplete="off" placeholder="Ask a birthday question…" aria-label="Question">
+          <button type="submit" class="send">Send</button>
+        </form>
+        <div class="hint">Try <code>examples</code> if you are unsure what V1 can understand.</div>
+      </section>
+
+      <aside class="debug-card">
+        <h2>Rule Trace</h2>
+        <p>This panel exposes the internal reasoning <em>implemented by the code</em>: which deterministic rules and filters fired.</p>
+        <pre id="trace">No query yet.</pre>
+        <div class="concept-box">
+          <strong>Observe:</strong>
+          <ul>
+            <li>What phrase triggered the rule?</li>
+            <li>Which rows were selected?</li>
+            <li>Where does V1 fail on paraphrases?</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+
+    <footer>Teaching project · Synthetic data only · Faculty: Dr. Shivanagowda G. M. &amp; Tejas</footer>
+  </main>
+  <script src="{{ url_for('static', filename='chat.js') }}"></script>
+</body>
+</html>
